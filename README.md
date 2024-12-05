@@ -1,76 +1,107 @@
+# Housing Prices Prediction Project
 
-Housing Price Prediction Using Linear Regression
+This project predicts housing prices based on various features such as median income, house age, and average number of rooms. It leverages machine learning techniques with a Linear Regression model and provides insights through evaluation metrics.
 
-This project uses Linear Regression to predict the housing prices in California based on various features such as median income, house age, and average rooms. The model is trained on the California Housing Dataset and evaluates the prediction performance using the Mean Squared Error (MSE). Additionally, the model is saved for future use and can be used to make predictions for new data.
+---
 
-Prerequisites
-You will need to install the following Python libraries:
+## Table of Contents
 
-numpy
-pandas
-scikit-learn
-joblib
+- [Overview](#overview)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [How It Works](#how-it-works)
+- [Setup and Installation](#setup-and-installation)
+- [Usage](#usage)
+- [Output](#output)
+- [Future Improvements](#future-improvements)
+- [Acknowledgments](#acknowledgments)
 
-Dataset
-The dataset used in this project is the California Housing Dataset, which contains data about housing prices and several related features. These features include:
+---
 
-MedInc: Median income
-HouseAge: Age of the house
-AveRooms: Average number of rooms
-AveBedrms: Average number of bedrooms
-Population: Population of the area
-AveOccup: Average occupancy
-Latitude: Latitude of the house
-Longitude: Longitude of the house
-MEDV: Median house value (target variable)
-The dataset is fetched from scikit-learn's fetch_california_housing() function.
+## Overview
 
-Steps
-1. Data Loading:
-The California housing data is loaded and converted into a pandas DataFrame. The target variable MEDV (Median House Value) is added as a column to the dataset.
+The **Housing Prices Prediction Project** applies machine learning to analyze the **California Housing Dataset** and predict housing prices. It preprocesses data, trains a model, evaluates performance, and saves the model for future predictions.
 
-2. Data Preprocessing:
-The data is split into training and testing sets using train_test_split(). The features are scaled using StandardScaler() for better performance in the regression model.
+---
 
-3. Model Pipeline:
-A preprocessing pipeline is created to standardize the numerical features, and then a Linear Regression model is applied on the preprocessed data using make_pipeline().
+## Features
 
-4. Model Training:
-The model is trained on the training set (x_train, y_train).
+- **Data Preprocessing**: 
+  - Standardizes numerical features using `StandardScaler` for consistent model training.
+- **Model Training**: 
+  - A pipeline integrates preprocessing with a Linear Regression model.
+- **Model Evaluation**: 
+  - Calculates Mean Squared Error (MSE) to assess model accuracy.
+- **Model Persistence**: 
+  - Saves the trained model with `joblib` for reuse.
+- **Prediction**: 
+  - Accepts new input data and predicts housing prices.
 
-5. Model Evaluation:
-The model's performance is evaluated on the test set (x_test, y_test) using Mean Squared Error (MSE). The MSE gives a measure of how well the model predicts the housing prices.
+---
 
-6. Model Saving:
-After training, the model is saved to a file using joblib for later use.
+## Technologies Used
 
-7. Prediction for New Data:
-An example prediction is made for a new house with given features. The saved model is loaded and used to predict the house price based on the features of the new house.
+- **Python** (Core Language)
+- **NumPy** and **pandas** (Data Handling)
+- **scikit-learn** (Modeling, Preprocessing, Evaluation)
+- **joblib** (Model Serialization)
+
+---
+
+## How It Works
+
+1. **Dataset**:
+   - The **California Housing Dataset** is loaded using `fetch_california_housing`.
+   - Features and target values (median house prices) are extracted.
+   
+2. **Data Splitting**:
+   - The dataset is split into training (80%) and testing (20%) subsets.
+
+3. **Preprocessing**:
+   - Numerical features are standardized using `StandardScaler` within a `ColumnTransformer`.
+
+4. **Model Training**:
+   - A Linear Regression model is trained using the preprocessed training data.
+
+5. **Evaluation**:
+   - The model predicts prices for the test set, and the Mean Squared Error (MSE) is computed.
+
+6. **Saving and Loading the Model**:
+   - The trained model is saved as `housing_prices_model.joblib` for future predictions.
+   - The saved model is reloaded for predicting prices for new data.
+
+---
+
+## Setup and Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-repo/housing-prices-prediction.git
+   cd housing-prices-prediction
+2. **Install Dependencies**:
+   Ensure Python 3.6+ is installed, then install the required libraries:
+   ```bash
+   pip install numpy pandas scikit-learn joblib
+3. **Run the Script**:
+   Execute the Python script:
+   ```bash
+   python main.py
+
+## Usage
+**Run the Script**:
+
+Train the model, evaluate its performance, and save it for reuse.
+
+**Predict New Prices**:
+
+Modify the new_house DataFrame in the script with the desired input features.
+Load the saved model and make predictions for the new house.
+
+## Output
+**Mean Squared Error**: Evaluates model accuracy on test data.
+```bash
+Mean Squared Error on Test Data: 0.47
+Predicted Price for the New House: $237500.00
 
 
-Example Usage
-After training the model, you can use it to predict housing prices for new data. For example, to predict the price of a new house, you can define the features for the house and use the saved model to make predictions.
 
-python
-Copy code
-new_house = pd.DataFrame({
-    'MedInc': [3.0],
-    'HouseAge': [20.0],
-    'AveRooms': [5.0],
-    'AveBedrms': [2.0],
-    'Population': [1000.0],
-    'AveOccup': [3.0],
-    'Latitude': [37.5],
-    'Longitude': [-122.5],
-})
-
-loaded_model = joblib.load('housing_prices_model.joblib')
-predicted_price = loaded_model.predict(new_house) * 100000  # Scale the price
-print(f'Predicted Price for the New House: ${predicted_price[0]:.2f}')
-File Structure
-housing_prices_model.joblib: The saved model.
-housing_price_prediction.py: The script used for training, evaluation, and prediction.
-
-Notes
-The model expects only numeric features in the input. For more complex use cases with mixed data types (e.g., text), you can extend the pipeline to include transformers for text data (e.g., using CountVectorizer).
-The target variable (MEDV) is scaled by 100,000 during prediction to match the typical housing price scale.
