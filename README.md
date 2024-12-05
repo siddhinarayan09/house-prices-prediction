@@ -97,11 +97,34 @@ Train the model, evaluate its performance, and save it for reuse.
 Modify the new_house DataFrame in the script with the desired input features.
 Load the saved model and make predictions for the new house.
 
+---
+
 ## Output
 **Mean Squared Error**: Evaluates model accuracy on test data.
-```bash
-Mean Squared Error on Test Data: 0.47
-Predicted Price for the New House: $237500.00
 
+  ```bash
+  Mean Squared Error on Test Data: 0.47
+  Predicted Price for the New House: $237500.00
+```
+---
 
+## Future Improvements
+
+Experiment with advanced models such as Random Forest or Gradient Boosting.
+
+Conduct hyperparameter tuning to optimize the model.
+
+Implement feature engineering to improve accuracy.
+
+Add support for categorical and text features using methods like CountVectorizer.
+
+---
+
+## Acknowledgments
+
+**scikit-learn**: For providing the dataset and ML tools.
+
+**joblib**: For efficient model persistence.
+
+**NumPy and pandas**: For data manipulation.
 
